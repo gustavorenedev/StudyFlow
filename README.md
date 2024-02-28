@@ -11,7 +11,7 @@ API do projeto StudyFlow = Sistema de gestão de estudos
 - [ ] CRUD de Usuários
 - [ ] Autenticação
 - [ ] Dashboard
-- [ ] Busca Matérias
+- [ ] Buscar Matérias
 
 ## Documentação
 
