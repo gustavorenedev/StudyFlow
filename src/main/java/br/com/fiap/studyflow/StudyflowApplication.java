@@ -17,7 +17,7 @@ public class StudyflowApplication {
 	@RequestMapping
 	@ResponseBody 
 	public String home(){
-		return "Finanças Pro";
+		return "Study Flow";
 	}
 
 }

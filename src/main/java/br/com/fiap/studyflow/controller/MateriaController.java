@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.studyflow.models.Materia;
 import br.com.fiap.studyflow.repository.MateriaRepository;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,8 +37,6 @@ public class MateriaController {
     @Autowired
     MateriaRepository repository;
     
-    Logger log = LoggerFactory.getLogger(getClass());
-
     @GetMapping
     public List<Materia> index(){
         return repository.findAll();
@@ -45,7 +44,7 @@ public class MateriaController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Materia create(@RequestBody Materia materia) {
+    public Materia create(@RequestBody @Valid Materia materia) {
         log.info("cadastrando materia {} ", materia);
         return repository.save(materia);
     }
