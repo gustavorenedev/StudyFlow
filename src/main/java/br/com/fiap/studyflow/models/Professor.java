@@ -18,6 +18,9 @@ public class Professor {
     @NotBlank(message = "{professor.nome.notblank}")
     @Size(min = 3, max = 255, message = "{professor.nome.size}")
     private String nome;
+    @NotBlank(message = "{professor.nome.notblank}")
+    @Size(min = 3, max = 255, message = "{professor.nome.size}")
+    private String materia;
     private String foto;
 
 }

@@ -19,35 +19,35 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.fiap.studyflow.models.Materia;
-import br.com.fiap.studyflow.repository.MateriaRepository;
+import br.com.fiap.studyflow.models.Task;
+import br.com.fiap.studyflow.repository.TaskRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 
 
 @RestController
-@RequestMapping("materia")
+@RequestMapping("task")
 @Slf4j
-public class MateriaController {
+public class TaskController {
 
     @Autowired
-    MateriaRepository repository;
+    TaskRepository repository;
     
     @GetMapping
-    public List<Materia> index(){
+    public List<Task> index(){
         return repository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Materia create(@RequestBody @Valid Materia materia) {
-        log.info("cadastrando materia {} ", materia);
-        return repository.save(materia);
+    public Task create(@RequestBody @Valid Task task) {
+        log.info("cadastrando tarefa {} ", task);
+        return repository.save(task);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Materia> show(@PathVariable Long id) {
+    public ResponseEntity<Task> show(@PathVariable Long id) {
         return repository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -56,27 +56,27 @@ public class MateriaController {
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id){
-        log.info("apagando materia");
+        log.info("apagando tarefa");
 
-        verificarSeExisteMateria(id);
+        verificarSeExisteLicao(id);
         repository.deleteById(id);
     }
 
     @PutMapping("{id}")
-    public Materia update(@PathVariable Long id, @RequestBody Materia materia) {
-        log.info("atualizando materia com id {} para {}", id, materia);
+    public Task update(@PathVariable Long id, @RequestBody Task task) {
+        log.info("atualizando tarefa com id {} para {}", id, task);
 
-        verificarSeExisteMateria(id);
-        materia.setId(id);
-        return repository.save(materia);
+        verificarSeExisteLicao(id);
+        task.setId(id);
+        return repository.save(task);
     }
     
-    private void verificarSeExisteMateria(Long id) {
+    private void verificarSeExisteLicao(Long id) {
         repository
                 .findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
-                        "Não existe materia com o id informado. Consulte lista em /materia"));
+                        "Não existe tarefa com o id informado. Consulte lista em /tarefa"));
     }
 
 }

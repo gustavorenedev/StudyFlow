@@ -10,14 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Materia {
+public class Task {
     
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "{materia.nome.notblank}")
-    @Size(min = 3, max = 255, message = "{materia.nome.size}")
-    private String nome;
-    private String icone;
-
+    @NotBlank(message = "{task.nome.notblank}")
+    @Size(min = 3, max = 255, message = "{task.nome.size}")
+    private String licao;
 }
